@@ -41,8 +41,8 @@ export const register = (req,res) =>{
 
 export const login = (req,res) => {
     User.findOne({email:req.body.email}, (err,result) =>{
-        if(err) return res.status(500).send({auth:false,"err":"Error while loging In"});
-        if(!result) return res.status(500).send({auth:false,"err":"No User found,please resgister"});
+        if(err) return res.status(500).send({auth:false,"err":"Error while loging In"})
+        if(!result) return res.status(500).send({auth:false,"err":"No User found,please resgister"})
         else{
             const passIsValid = bcrypt.compareSync(req.body.password,result.password)
             if(!passIsValid) return res.status(500).send({auth:false,"err":"Invalid Password"})
@@ -55,9 +55,6 @@ export const login = (req,res) => {
 }
 
 export const profile = (req,res) =>{
-    if(!req.session.user) {
-        return res.redirect('/?errmsg=No Session Found! Please Login Again')
-    }
     const token = req.headers['x-access-token'];
     if(!token) return res.status(500).send({auth:false, "err": "No token given"})
     jwt.verify(token,config.secret, (err,data) => {
