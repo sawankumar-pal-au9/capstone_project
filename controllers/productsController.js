@@ -46,9 +46,9 @@ export const getProducts = async(req,res) => {
 //get products by name
 export const getProductsByName = async(req,res) => {
     try{
-        const product = req.params.product
+        const category = req.params.category
         // console.log(product)
-        const result = await Products.find({product:product})
+        const result = await Products.find({category:category})
         if(result.length <1) return res.status(404).send({"err":"No Data Found"});
         res.status(200).send({"success":result})
     }
