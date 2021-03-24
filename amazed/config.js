@@ -1,17 +1,12 @@
-// module.exports= {
-//     'secret': 'loginsecret'
-// }
+import prodKeys from './configKeys/prod.js';
+import devKeys from './configKeys/dev.js';
 
-const config = {
-    'secret': 'loginsecret',
-     google: {
-        GOOGLE_CLIENT_ID:'672258830784-1mu3mhsc6efa3qhea2iphd9dk7in1o0f.apps.googleusercontent.com',
-        GOOGLE_CLIENT_SECRET:'TUdcoqbcKJXPaLpBIv_ohLhW'
-     },
-     facebook:{
-      FACEBOOK_APP_ID:'1339678449764671',
-      FACEBOOK_APP_SECRET:'eb3b5bced032f18576c194e4425d8970'
-
-   }
+let keys;
+if(process.env.NODE_ENV === 'production') {
+   keys = prodKeys;
 }
-export default config;
+else {
+   keys = devKeys;
+}
+
+export default keys;

@@ -15,8 +15,8 @@ import GetUser from '../container/SignInLogin/GetUser';
 import Myorder from '../container/Myorder';
 import Coupon from '../container/Coupon';
 import CreateCoupon from '../container/CreateCoupon';
+import Profile from '../container/UserProfile';
 import UserCoupon from '../container/UserCoupons';
-import Profile from './Profile';
 import NotSignedIn from './SignInLogin/NotSignedIn';
 
 const Routing = () => {

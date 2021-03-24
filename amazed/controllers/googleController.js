@@ -12,7 +12,8 @@ export const G_Strategy = new GoogleStrategy({
     proxy: true
     },
     function(accessToken, refreshToken, profile, done) {
-        User.findOne({googleId: profile.id})
+        console.log(profile)
+        User.findOne({email: profile.emails[0].value})
             .then((user) => {
                 if(user) {
                     return done(null, user);
@@ -20,10 +21,9 @@ export const G_Strategy = new GoogleStrategy({
                     let user = {
                         name: profile.displayName,
                         email: profile.emails[0].value,
-                        role: "User",
-                        isActive: true,
+                        imageUrl: profile.photos[0].value,
                         provider: profile.provider,
-                        googleId: profile.id
+                        googleId: profile.id,
                     }
 
                     new User(user).save()
@@ -31,6 +31,6 @@ export const G_Strategy = new GoogleStrategy({
                             return done(null, user);
                         })
                 }
-            })
+        })
     }
 );

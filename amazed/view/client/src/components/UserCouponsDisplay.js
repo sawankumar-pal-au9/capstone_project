@@ -21,22 +21,45 @@ const UserCouponsDisplay = (props) => {
     }
     
     const renderCoupons = (data) => {
+        console.log(data)
         if(data && data.length > 0) {
-            return data.map(item => {
-                return (
-                    <div className="coupon">
-                        <img src="/images/coupon.jpg" alt="coupon-icon"></img>
+            let flag = true;
+            return data.map((item, idx) => {
+                let expiryDate = new Date(item.expiryDate);
+                let date = new Date();
+                let tDate = `${date.getFullYear()}-${(date.getMonth() + 1)}-${date.getDate()}`;
 
-                        <div className="details">
-                            <p className="ctitle">Discount of <b>{item.discountPercent}%</b> on any {item.category} product</p>
-                            <p><b>Name:</b> {item.couponName}</p>
-                            <p><b>Code:</b> {item.couponCode}</p>
-                            {renderStatus(item.usedBy, item._id)}
-                            
+                if(expiryDate >= new Date(tDate)) { 
+                    flag = false;
+                    return (
+                        <div className="coupon">
+                            <img src="/images/coupon.jpg" alt="coupon-icon"></img>
+    
+                            <div className="details">
+                                <p className="ctitle">Discount of <b>{item.discountPercent}%</b> on any {item.category} product</p>
+                                <p><b>Name:</b> {item.couponName}</p>
+                                <p><b>Code:</b> {item.couponCode}</p>
+                                {renderStatus(item.usedBy, item._id)}   
+                            </div>
                         </div>
-                    </div>
-                );
+                    );
+                }
+                if(flag && idx === data.length - 1) {
+                    return (
+                        <center>
+                            <img src="/images/nocoupons.jpg" alt="coupon"></img>
+                            <p className="nocoupon">We Are Sorry! Currently There Are No Coupons Available</p>
+                        </center>
+                    )
+                }
             })
+        }else {
+            return (
+                <center>
+                    <img src="/images/nocoupons.jpg" alt="coupon"></img>
+                    <p className="nocoupon">We Are Sorry! Currently There Are No Coupons Available</p>
+                </center>
+            )
         }
     }
 

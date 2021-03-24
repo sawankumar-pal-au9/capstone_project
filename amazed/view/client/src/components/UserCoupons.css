@@ -44,6 +44,11 @@
     outline-color: red; 
 }
 
+.nocoupon {
+    color: grey;
+    margin-bottom: 30px;
+}
+
 
 @media only screen and (max-width: 400) {
 
