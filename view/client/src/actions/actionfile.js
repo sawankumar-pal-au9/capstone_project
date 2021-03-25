@@ -16,6 +16,7 @@ const contact_url = `http://localhost:${port}/contacts`;
 const user_url = `http://localhost:${port}/users`
 
 export function categories(){
+    console.log(port);
     const output = fetch(category_url, {method:'GET'})
     .then((res) => res.json())
     
