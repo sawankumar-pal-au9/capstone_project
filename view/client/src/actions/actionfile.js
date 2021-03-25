@@ -1,17 +1,19 @@
-const category_url = 'http://localhost:9800/categories';
-const search_url ='http://localhost:9800/products/category';
-const detail_url = 'http://localhost:9800/details';
-const review_url = 'http://localhost:9800/reviews';
-const order_url = 'http://localhost:9800/orders';
-const cart_url = 'http://localhost:9800/cart';
-const reg_url = 'http://localhost:9800/users/register';
-const login_url = 'http://localhost:9800/users/login';
-const userinfo_url ="http://localhost:9800/users/profile";
-const getAllUser_url = "http://localhost:9800/users";
-const subcategory_url = 'http://localhost:9800/subcategories';
-const coupon_url = 'http://localhost:9800/coupons';
-const contact_url = 'http://localhost:9800/contacts';
-const user_url ='http://localhost:9800/users'
+const port = process.env.PORT || 9800;
+
+const category_url = `http://localhost:${port}/categories`;
+const search_url = `http://localhost:${port}/products/category`;
+const detail_url = `http://localhost:${port}/details`;
+const review_url = `http://localhost:${port}/reviews`;
+const order_url = `http://localhost:${port}/orders`;
+const cart_url = `http://localhost:${port}/cart`;
+const reg_url = `http://localhost:${port}/users/register`;
+const login_url = `http://localhost:${port}/users/login`;
+const userinfo_url = `http://localhost:${port}/users/profile`;
+const getAllUser_url = `http://localhost:${port}/users`;
+const subcategory_url = `http://localhost:${port}/subcategories`;
+const coupon_url = `http://localhost:${port}/coupons`;
+const contact_url = `http://localhost:${port}/contacts`;
+const user_url = `http://localhost:${port}/users`
 
 export function categories(){
     const output = fetch(category_url, {method:'GET'})

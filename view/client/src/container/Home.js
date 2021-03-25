@@ -18,6 +18,7 @@ class Home extends React.Component {
                 sessionStorage.setItem('token', token);
                 sessionStorage.setItem('userName', userName);
                 sessionStorage.setItem('loggedInEmail', email);
+                sessionStorage.setItem('role', 'User');
             }
         }
     }

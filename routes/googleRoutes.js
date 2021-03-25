@@ -13,6 +13,7 @@ googleRouter.get('/', passport.authenticate('google', {
 // when done with google it comes to this
 googleRouter.get('/callback', passport.authenticate('google', 
     { failureRedirect: '/login' }), (req, res) => {
+        console.log(req.user)
         const token = jwt.sign({id:req.user._id}, config.secret, {expiresIn:86400});
         const userName = req.user.name;
         const email = req.user.email;

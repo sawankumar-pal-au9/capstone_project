@@ -12,7 +12,6 @@ export const G_Strategy = new GoogleStrategy({
     proxy: true
     },
     function(accessToken, refreshToken, profile, done) {
-        console.log(profile)
         User.findOne({email: profile.emails[0].value})
             .then((user) => {
                 if(user) {

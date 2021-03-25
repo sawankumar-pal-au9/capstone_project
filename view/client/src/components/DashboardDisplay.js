@@ -58,7 +58,7 @@ const DashboardDisplay = (props) => {
                 <td>{item.date}</td>
                 <td>{`${item.orderDetails.firstName} ${item.orderDetails.lastName}`}</td>
                 <td>{`${item.orderDetails.houseAddress}, ${item.orderDetails.apartment}, ${item.city}, ${item.orderDetails.state} ${item.orderDetails.postCode}`}</td>
-                <td>{`${item.phone}/ ${item.orderDetails.email}`}</td>
+                <td>{`${item.orderDetails.phone}/ ${item.orderDetails.email}`}</td>
                 <td>{item.productDetails.quantity}</td>
                 <td>{item.productDetails.grandTotal}</td>
                 <td>{item.productDetails.productTitle}</td>

@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
-import { updateProfile } from '../actions/actionfile';
+import { updateProfile, userDetails } from '../actions/actionfile';
 import Profile from '../components/Profile';
+
 class UserProfile extends React.Component{
     constructor(){
         super()
@@ -12,12 +13,24 @@ class UserProfile extends React.Component{
             successStatus:''
         }
     }
-    componentDidMount(){
-        this.setState({
-            userDetails:JSON.parse(sessionStorage.getItem('userDetails'))            
-        })
 
+    componentDidMount(){
+        let token = sessionStorage.getItem('token');
+        this.props.dispatch(userDetails(token));
+        // this.setState({
+        //     userDetails:JSON.parse(sessionStorage.getItem('userDetails'))            
+        // })
     }
+
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
+        if(nextProps.userDetails) {
+                this.setState({
+                    userDetails: nextProps.userDetails            
+                })
+        }
+    }
+
     changeDetails = (name,value) => {
         this.setState({
             userDetails:{
@@ -27,6 +40,7 @@ class UserProfile extends React.Component{
             
         })
     }
+
     updateUser = async(event) => {
         event.preventDefault();
         // // console.log(this.state.userDetails)
@@ -50,6 +64,7 @@ class UserProfile extends React.Component{
                 }  
             })
         }
+
         catch (err) {	
             this.setState({error:"Invalid User details"})	
         }
@@ -58,7 +73,7 @@ class UserProfile extends React.Component{
             this.setState({
                 userDetails:{
                     ...this.state.userDetails,
-                    imageUrl:sessionStorage.getItem('userDetails').imageUrl
+                    imageUrl: this.state.userDetails.imageUrl
                 }
             })
         }
@@ -74,7 +89,7 @@ class UserProfile extends React.Component{
             isActive:this.state.userDetails.isActive	
         }
         this.props.dispatch(updateProfile(userData));
-        sessionStorage.setItem('userDetails',JSON.stringify(userData))
+        // sessionStorage.setItem('userDetails',JSON.stringify(userData))
         sessionStorage.setItem('userName',JSON.stringify(userData.name))
         window.location.reload();
     }
@@ -82,19 +97,22 @@ class UserProfile extends React.Component{
     render(){
         return(
             <Profile 
-            userDetails = {this.state.userDetails}
-            changeDetails = {this.changeDetails}
-            updateUser = {this.updateUser}
+                userDetails = {this.state.userDetails}
+                changeDetails = {this.changeDetails}
+                updateUser = {this.updateUser}
             />
         );
     }
 }
+
 UserProfile.prototypes = {
     dispatch: propTypes.func
 }
+
 const mapStateToProps = (state) => {
     // console.log("from redux",state)
     return {
+        userDetails: state.signup.userInfo,
         successStatus: state.signup.updatedDetails
 
     }
