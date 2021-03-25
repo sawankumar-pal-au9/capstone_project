@@ -15,6 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "amazed.in": "file:view/client",
     "bcryptjs": "^2.4.3",
     "concurrently": "^6.0.0",
     "cors": "^2.8.5",

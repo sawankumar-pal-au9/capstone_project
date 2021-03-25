@@ -1,4 +1,4 @@
-const url = 'https://amazed-fullstack.herokuapp.com' || 'http://localhost:9800';
+const url = 'https://amazed-fullstack.herokuapp.com';
 
 const category_url = `${url}/categories`;
 const search_url = `${url}/products/category`;
