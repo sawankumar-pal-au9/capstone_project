@@ -1,19 +1,19 @@
-const port = process.env.PORT || 9800;
+const url = 'https://amazed-fullstack.herokuapp.com' || 'http://localhost:9800';
 
-const category_url = `http://localhost:${port}/categories`;
-const search_url = `http://localhost:${port}/products/category`;
-const detail_url = `http://localhost:${port}/details`;
-const review_url = `http://localhost:${port}/reviews`;
-const order_url = `http://localhost:${port}/orders`;
-const cart_url = `http://localhost:${port}/cart`;
-const reg_url = `http://localhost:${port}/users/register`;
-const login_url = `http://localhost:${port}/users/login`;
-const userinfo_url = `http://localhost:${port}/users/profile`;
-const getAllUser_url = `http://localhost:${port}/users`;
-const subcategory_url = `http://localhost:${port}/subcategories`;
-const coupon_url = `http://localhost:${port}/coupons`;
-const contact_url = `http://localhost:${port}/contacts`;
-const user_url = `http://localhost:${port}/users`
+const category_url = `url/categories`;
+const search_url = `url/products/category`;
+const detail_url = `url/details`;
+const review_url = `url/reviews`;
+const order_url = `url/orders`;
+const cart_url = `url/cart`;
+const reg_url = `url/users/register`;
+const login_url = `url/users/login`;
+const userinfo_url = `url/users/profile`;
+const getAllUser_url = `url/users`;
+const subcategory_url = `url/subcategories`;
+const coupon_url = `url/coupons`;
+const contact_url = `url/contacts`;
+const user_url = `url/users`
 
 export function categories(){
     console.log(port);
