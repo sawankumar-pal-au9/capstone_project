@@ -12,7 +12,10 @@ module.exports = function(app) {
     app.use(createProxyMiddleware('/reviews', {target: 'http://localhost:9800', changeOrigin: true}));
     app.use(createProxyMiddleware('/orders', {target: 'http://localhost:9800', changeOrigin: true}));
     app.use(createProxyMiddleware('/cart', {target: 'http://localhost:9800', changeOrigin: true}));
-    app.use(createProxyMiddleware('/users', {target: 'http://localhost:9800', secure:false, changeOrigin: true}));
+    app.use(createProxyMiddleware('/users/login', {target: 'http://localhost:9800', changeOrigin: true}));
+    app.use(createProxyMiddleware('/users/register', {target: 'http://localhost:9800', changeOrigin: true}));
+    app.use(createProxyMiddleware('/users/profile', {target: 'http://localhost:9800', changeOrigin: true}));
+    app.use(createProxyMiddleware('/users', {target: 'http://localhost:9800', changeOrigin: true}));
     app.use(createProxyMiddleware('/subcategories', {target: 'http://localhost:9800', changeOrigin: true}));
     app.use(createProxyMiddleware('/coupons', {target: 'http://localhost:9800', changeOrigin: true}));
     app.use(createProxyMiddleware('/contacts', {target: 'http://localhost:9800', changeOrigin: true}));
