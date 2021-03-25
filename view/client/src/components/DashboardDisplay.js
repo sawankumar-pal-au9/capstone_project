@@ -20,7 +20,7 @@ const DashboardDisplay = (props) => {
         if(!bodyData.delivered) {
             bodyData.delivered = true;
             bodyData.orderStatus = 'Product Delivered'
-            fetch(`http://localhost:9800/orders/${bodyData.id}`,
+            fetch(`/orders/${bodyData.id}`,
             {method:'PATCH',
             headers: {
                 'Accept':'application/json',
@@ -36,7 +36,7 @@ const DashboardDisplay = (props) => {
         else{
             bodyData.delivered = false;
             bodyData.orderStatus = 'Order Placed';
-            fetch(`http://localhost:9800/orders/${bodyData.id}`,
+            fetch(`/orders/${bodyData.id}`,
             {method:'PATCH',
             headers: {
                 'Accept':'application/json',
