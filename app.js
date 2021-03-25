@@ -28,9 +28,9 @@ app.use(express.json())
 app.use(cors());
 
 //creating session
-app.use(session({
-  'secret': 'amazed'
-}));
+// app.use(session({
+//   'secret': 'amazed'
+// }));
 
 //start passport
 app.use(passport.initialize());

@@ -1,18 +1,13 @@
-
-const category_url = `/categories`;
-const search_url = `/products/category`;
-const detail_url = `/details`;
+const category_url = '/categories';
+const search_url = '/products/category';
+const detail_url = '/details';
 const review_url = `/reviews`;
-const order_url = `/orders`;
-const cart_url = `/cart`;
-const reg_url = `/users/register`;
-const login_url = `/users/login`;
-const userinfo_url = `/users/profile`;
-const getAllUser_url = `/users`;
-const subcategory_url = `/subcategories`;
-const coupon_url = `/coupons`;
-const contact_url = `/contacts`;
-const user_url = `/users`;
+const order_url = '/orders';
+const cart_url = '/cart';
+const subcategory_url = '/subcategories';
+const coupon_url = '/coupons';
+const contact_url = '/contacts';
+const user_url = '/users';
 
 export function categories(){
     const output = fetch(category_url, {method:'GET'})
@@ -89,18 +84,8 @@ export function placeOrder(orderDetails){
     }
 }
 
-export function getAllUsers() {
-    const output = fetch(getAllUser_url,{method:'GET'})
-    .then((res) => res.json())
-
-    return {
-        type: 'GET_ALL_USERS',
-        payload: output
-    }   
-}
-
 export function signUp(signUpDetails) {
-    const output = fetch(reg_url, {
+    const output = fetch(`${user_url}/register`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -118,7 +103,7 @@ export function signUp(signUpDetails) {
 }
 
 export function signIn(signInDetails) {
-    const output = fetch(login_url,{
+    const output = fetch(`${user_url}/login`,{
         method:'POST',
         headers:{
             'Accept':'application/json',
@@ -137,7 +122,7 @@ export function signIn(signInDetails) {
 }
 
 export function userDetails(token) {
-    const output = fetch(userinfo_url,{
+    const output = fetch(`${user_url}/profile`,{
         method:'GET',
         headers:{
             'x-access-token':token
@@ -318,6 +303,7 @@ export function deleteCoupon(id){
         payload: output
     }
 }
+
 export function updateCoupon(id, data){
     const output = fetch(`${coupon_url}/${id}`,{ 
         method:'PUT',
@@ -335,6 +321,17 @@ export function updateCoupon(id, data){
         payload: output
     }
 }
+
+export function getAllUsers() {
+    const output = fetch(user_url,{method:'GET'})
+    .then((res) => res.json())
+
+    return {
+        type: 'GET_ALL_USERS',
+        payload: output
+    }   
+}
+
 export function updateProfile(userDetails){	
     const id = userDetails._id
     const output = fetch(`${user_url}/${id}`, {	

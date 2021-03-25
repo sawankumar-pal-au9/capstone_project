@@ -1,6 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
+  "proxy": true,
   "engines": {
     "node": "14.x"
   },

@@ -34,7 +34,7 @@ const Routing = () => {
             <Route path='/signup' component={SignUp}/>
             <Route path='/orders' component={Myorder}/>
             <Route path='/admin' component={Dashboard}/>
-            <Route path='/user' component={GetUser}/>
+            <Route path='/getUser' component={GetUser}/>
             <Route path='/coupon' component={Coupon}/>
             <Route path='/create_coupon' component={CreateCoupon}/>
             <Route path='/usercoupon' component={UserCoupon}/>

@@ -52,7 +52,7 @@ class SignIn extends React.Component {
             })
             
             setTimeout(() => {
-                this.props.history.push('/user'); 
+                this.props.history.push('/getUser'); 
             }, 1000);
         }
         else {
