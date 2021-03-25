@@ -72,7 +72,6 @@ const CouponDisplay = (props) => {
     }
 
     const createCoupon = () => {
-        sessionStorage.setItem('createCoupon', true);
         props.history.push('/create_coupon');
     }
 

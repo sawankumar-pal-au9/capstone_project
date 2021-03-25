@@ -139,6 +139,34 @@ export function userDetails(token) {
     }
 }
 
+export function getAllUsers() {
+    const output = fetch(user_url,{method:'GET'})
+    .then((res) => res.json())
+
+    return {
+        type: 'GET_ALL_USERS',
+        payload: output
+    }   
+}
+
+export function updateProfile(userDetails){	
+    const id = userDetails._id
+    const output = fetch(`${user_url}/${id}`, {	
+        method:'PUT',	
+        headers: {	
+                    'Accept':'application/json',	
+                    'Content-Type':'application/json'	
+                },	
+                body: JSON.stringify(userDetails)	
+                })	
+    .then((res) => res.json())	
+    return {	
+        type: 'UPDATE_USER',		
+        payload: "successfully updated the profile"	
+    }	
+}
+
+
 export function Admin(){
     const output = fetch(`${order_url}/all`, {method:'GET'})
     .then((res) => res.json())
@@ -320,31 +348,4 @@ export function updateCoupon(id, data){
         type: 'UPDATE_COUPON',
         payload: output
     }
-}
-
-export function getAllUsers() {
-    const output = fetch(user_url,{method:'GET'})
-    .then((res) => res.json())
-
-    return {
-        type: 'GET_ALL_USERS',
-        payload: output
-    }   
-}
-
-export function updateProfile(userDetails){	
-    const id = userDetails._id
-    const output = fetch(`${user_url}/${id}`, {	
-        method:'PUT',	
-        headers: {	
-                    'Accept':'application/json',	
-                    'Content-Type':'application/json'	
-                },	
-                body: JSON.stringify(userDetails)	
-                })	
-    .then((res) => res.json())	
-    return {	
-        type: 'UPDATE_USER',		
-        payload: "successfully updated the profile"	
-    }	
 }

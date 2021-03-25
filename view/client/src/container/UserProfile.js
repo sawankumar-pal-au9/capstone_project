@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
-import { updateProfile, userDetails } from '../actions/actionfile';
+import { updateProfile } from '../actions/actionfile';
 import Profile from '../components/Profile';
 
 class UserProfile extends React.Component{
@@ -15,20 +15,9 @@ class UserProfile extends React.Component{
     }
 
     componentDidMount(){
-        let token = sessionStorage.getItem('token');
-        this.props.dispatch(userDetails(token));
-        // this.setState({
-        //     userDetails:JSON.parse(sessionStorage.getItem('userDetails'))            
-        // })
-    }
-
-    UNSAFE_componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
-        if(nextProps.userDetails) {
-                this.setState({
-                    userDetails: nextProps.userDetails            
-                })
-        }
+        this.setState({
+            userDetails:JSON.parse(sessionStorage.getItem('userDetails'))            
+        })
     }
 
     changeDetails = (name,value) => {
@@ -43,8 +32,8 @@ class UserProfile extends React.Component{
 
     updateUser = async(event) => {
         event.preventDefault();
-        // // console.log(this.state.userDetails)
-       if(this.state.userDetails.image) {
+    
+        if(this.state.userDetails.image) {
             const data = new FormData()	
             data.append("file",this.state.userDetails.image)	
             data.append("upload_preset","image-uploader")	
@@ -55,26 +44,23 @@ class UserProfile extends React.Component{
                 {	
                 method:'POST',	
                 body:data	
-            })	
-            const respdata = await resp.json();	
-            this.setState({
-                userDetails:{
-                    ...this.state.userDetails,
-                    imageUrl:respdata.url
-                }  
-            })
-        }
+                })	
+                const respdata = await resp.json();	
+                this.setState({
+                    userDetails:{
+                        ...this.state.userDetails,
+                        imageUrl:respdata.url
+                    }  
+                })
+            }
 
-        catch (err) {	
-            this.setState({error:"Invalid User details"})	
+            catch (err) {	
+                this.setState({error:"Invalid User details"})	
+            }
         }
-    }
         else{
             this.setState({
-                userDetails:{
-                    ...this.state.userDetails,
-                    imageUrl: this.state.userDetails.imageUrl
-                }
+                userDetails: JSON.parse(sessionStorage.getItem('userDetails'))
             })
         }
         	
@@ -88,13 +74,14 @@ class UserProfile extends React.Component{
             imageUrl:this.state.userDetails.imageUrl,
             isActive:this.state.userDetails.isActive	
         }
+
         this.props.dispatch(updateProfile(userData));
-        // sessionStorage.setItem('userDetails',JSON.stringify(userData))
+        sessionStorage.setItem('userDetails',JSON.stringify(userData))
         sessionStorage.setItem('userName',JSON.stringify(userData.name))
-        window.location.reload();
     }
    	
     render(){
+        console.log("from redux")
         return(
             <Profile 
                 userDetails = {this.state.userDetails}
@@ -110,11 +97,8 @@ UserProfile.prototypes = {
 }
 
 const mapStateToProps = (state) => {
-    // console.log("from redux",state)
     return {
-        userDetails: state.signup.userInfo,
         successStatus: state.signup.updatedDetails
-
     }
 }
 export default connect(mapStateToProps)(UserProfile)

@@ -100,7 +100,6 @@ const Profile = (props) => {
                     <h4 className="modal-title">Update the User Details</h4>
                     <button type="button" className="close" 
                     data-dismiss="modal"
-                    onClick={()=>window.location.reload()}
                     >&times;</button>
                 </div>
         
@@ -174,10 +173,14 @@ const Profile = (props) => {
         
                  {/* Modal footer  */}
                 <div className="modal-footer">
-                        <button type="button" className="btn btn-danger" data-dismiss="modal"
-                        onClick={()=>window.location.reload()}>Close</button>
+                        <button type="button" className="btn btn-danger" data-dismiss="modal" 
+                            onClick={(event)=>props.updateUser(event)}>
+                            Close
+                        </button>
                         <button type="submit" id="update_table" className="btn btn-primary"
-                        onClick={(event)=>props.updateUser(event)}>update</button>
+                            data-dismiss="modal" onClick={(event)=>props.updateUser(event)}>
+                            update
+                        </button>
                 </div>
         
             </div>
