@@ -18,7 +18,7 @@ const Profile = (props) => {
                                     <div class="col-sm-4 bg-c-lite-green user-profile">
                                         <div class="card-block text-center text-white">
                                             <div class="m-b-25"> 
-                                                <img src={`${userDetails.imageUrl}`} class="img-radius" alt="/images/defaultImage.jpg"/>
+                                                <img src={userDetails.imageUrl?userDetails.imageUrl:'/images/defaultImage.jpg'} class="img-radius" alt="defaultImage.jpg"/>
                 
                                             </div>
                                             <h6 class="f-w-600">{userDetails.name}</h6>
