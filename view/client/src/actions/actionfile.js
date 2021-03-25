@@ -12,7 +12,7 @@ const getAllUser_url = `/users`;
 const subcategory_url = `/subcategories`;
 const coupon_url = `/coupons`;
 const contact_url = `/contacts`;
-const user_url = `/users`
+const user_url = `/users`;
 
 export function categories(){
     const output = fetch(category_url, {method:'GET'})
