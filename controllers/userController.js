@@ -105,7 +105,7 @@ export const updateUser = (req,res) => {
                 email: req.body.email,
                 role: req.body.role ?req.body.role:'User',
                 isActive: status?status:true,	
-                imageUrl: req.body.imageUrl? req.body.imageUrl:'https://img.icons8.com/bubbles/100/000000/user.png'	,	
+                imageUrl: req.body.imageUrl,	
                 phone:req.body.phone,	
                 location:req.body.location,
             }

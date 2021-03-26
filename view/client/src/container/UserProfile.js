@@ -10,13 +10,14 @@ class UserProfile extends React.Component{
 
         this.state={
             userDetails:'',
+            image:'',
             successStatus:''
         }
     }
 
     componentDidMount(){
         this.setState({
-            userDetails:JSON.parse(sessionStorage.getItem('userDetails'))            
+            userDetails: JSON.parse(sessionStorage.getItem('userDetails'))            
         })
     }
 
@@ -30,21 +31,27 @@ class UserProfile extends React.Component{
         })
     }
 
+    changeImage = (name,value) => {
+        this.setState({
+            [name]:value
+            
+        })
+    }
+
     updateUser = async(event) => {
         event.preventDefault();
-    
-        if(this.state.userDetails.image) {
+        if(this.state.userDetails.imageUrl !== this.state.image && event.target.name !== "closeModal") {
             const data = new FormData()	
-            data.append("file",this.state.userDetails.image)	
+            data.append("file",this.state.image)
             data.append("upload_preset","image-uploader")	
             data.append("clone_name","sunitta")	
-            // console.log(data)	
+            console.log(data)	
             try{	
                 const resp = await fetch('https://api.cloudinary.com/v1_1/sunitta/image/upload',
                 {	
                 method:'POST',	
                 body:data	
-                })	
+                })
                 const respdata = await resp.json();	
                 this.setState({
                     userDetails:{
@@ -58,11 +65,6 @@ class UserProfile extends React.Component{
                 this.setState({error:"Invalid User details"})	
             }
         }
-        else{
-            this.setState({
-                userDetails: JSON.parse(sessionStorage.getItem('userDetails'))
-            })
-        }
         	
         const userData = {
             _id: this.state.userDetails._id,	
@@ -75,17 +77,24 @@ class UserProfile extends React.Component{
             isActive:this.state.userDetails.isActive	
         }
 
-        this.props.dispatch(updateProfile(userData));
-        sessionStorage.setItem('userDetails',JSON.stringify(userData))
-        sessionStorage.setItem('userName',JSON.stringify(userData.name))
+        if(event.target.name !== "closeModal") {
+            sessionStorage.setItem('userDetails',JSON.stringify(userData))
+            sessionStorage.setItem('userName',JSON.stringify(userData.name))
+        }else {
+            this.setState({
+                userDetails: JSON.parse(sessionStorage.getItem('userDetails'))
+            })
+        }
+
+        this.props.dispatch(updateProfile(this.state.userDetails));
     }
    	
     render(){
-        console.log("from redux")
         return(
             <Profile 
                 userDetails = {this.state.userDetails}
                 changeDetails = {this.changeDetails}
+                changeImage = {this.changeImage}
                 updateUser = {this.updateUser}
             />
         );
