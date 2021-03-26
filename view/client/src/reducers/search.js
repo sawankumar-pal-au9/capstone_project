@@ -8,6 +8,12 @@ const search = (state={}, action) => {
 
         case 'REVIEW':
             return { ...state, ProductReviews: action.payload }
+
+        case 'ALL_PRODUCTS':
+            return { ...state, AllProducts: action.payload }
+
+        case 'DELETE_PRODUCT':
+            return { ...state, DeleteProduct: action.payload }
         
         default:
             return state

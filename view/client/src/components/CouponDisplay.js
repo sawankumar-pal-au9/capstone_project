@@ -15,7 +15,7 @@ const CouponDisplay = (props) => {
                 <td>
                     <button
                         value={item._id}
-                        style={{color:"red", outlineColor:"red"}}
+                        style={{border: "2px solid black", color:"red", borderColor:"red", borderRadius:"5px"}}
                         onClick={props.delete}
                     >
                         Delete
