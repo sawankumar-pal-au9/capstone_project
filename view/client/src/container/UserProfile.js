@@ -40,7 +40,7 @@ class UserProfile extends React.Component{
             data.append("clone_name","sunitta")	
             // console.log(data)	
             try{	
-                const resp = await fetch('/image/upload',
+                const resp = await fetch('https://api.cloudinary.com/v1_1/sunitta/image/upload',
                 {	
                 method:'POST',	
                 body:data	

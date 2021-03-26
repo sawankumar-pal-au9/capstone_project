@@ -16,5 +16,4 @@ module.exports = function(app) {
     app.use(createProxyMiddleware('/subcategories', {target: 'http://localhost:9800', changeOrigin: true}));
     app.use(createProxyMiddleware('/coupons', {target: 'http://localhost:9800', changeOrigin: true}));
     app.use(createProxyMiddleware('/contacts', {target: 'http://localhost:9800', changeOrigin: true}));
-    app.use(createProxyMiddleware('/image/upload', {target: 'https://api.cloudinary.com/v1_1/sunitta', changeOrigin: true}));
 };
