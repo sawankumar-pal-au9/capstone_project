@@ -80,11 +80,12 @@ class UserProfile extends React.Component{
         if(event.target.name !== "closeModal") {
             sessionStorage.setItem('userDetails',JSON.stringify(userData))
             sessionStorage.setItem('userName',JSON.stringify(userData.name))
-        }else {
-            this.setState({
-                userDetails: JSON.parse(sessionStorage.getItem('userDetails'))
-            })
         }
+        
+        this.setState({
+            userDetails: JSON.parse(sessionStorage.getItem('userDetails'))
+        })
+        
 
         this.props.dispatch(updateProfile(this.state.userDetails));
     }
