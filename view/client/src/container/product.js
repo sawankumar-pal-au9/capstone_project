@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { allProducts, deleteProduct, search, allSubCategories } from '../actions/actionfile';
-import ProductDisplay from '../components/productDisplay';
+import ProductDisplay from '../components/ProductDisplay';
 
 class Products extends React.Component {
     constructor() {

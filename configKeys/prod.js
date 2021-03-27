@@ -11,6 +11,10 @@ const prodKeys = {
     auth:{
         user: process.env.AUTH_USER,
         pass: process.env.PASS
+    },
+    razorpay_auth:{
+        key_id: process.env.RAZOR_ID,
+        key_secret: process.env.RAZOR_SECRET
     }
 }
 

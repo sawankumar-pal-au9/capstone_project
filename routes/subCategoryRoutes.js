@@ -1,6 +1,5 @@
 import express from 'express';
 import { getSubCategories, allSubcategories } from '../controllers/subCategoryController.js';
-import subCategory from '../model/subCategoryModel.js';
 
 const subCategoryRouter = express.Router();
 

@@ -11,7 +11,11 @@ const devKeys = {
     auth:{
         user:'customerserviceamazed@gmail.com',
         pass:'Am@zed123'
-    }
+    },
+    razorpay_auth:{
+        key_id: 'rzp_test_i3q74EogT2Neiu',
+        key_secret: 'TjlKCpgKW7jwS2NRORjQZFxk'
+     }
 }
 
 export default devKeys;

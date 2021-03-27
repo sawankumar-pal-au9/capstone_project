@@ -12,6 +12,7 @@ import user from './routes/userRoutes.js';
 import subCategory from './routes/subCategoryRoutes.js';
 import coupons from './routes/couponsRoutes.js';
 import contacts from './routes/contactsRoutes.js';
+import transactions from './routes/transactionRoutes.js';
 import passport from 'passport';
 import google from './routes/googleRoutes.js';
 import facebook from './routes/facebookRouter.js';
@@ -63,6 +64,7 @@ app.use('/subcategories', subCategory);
 app.use('/auth/google', google);
 app.use('/auth/facebook', facebook);
 app.use('/contacts', contacts);
+app.use('/transaction',transactions)
 
 // app.get("*", (req, res) => {
 //   res.send("You've tried reaching a route that doesn't exist.")

@@ -1,4 +1,4 @@
-import e from 'express';
+import express from 'express';
 import Products from '../model/productsModel.js';
 
 //add a product
@@ -56,7 +56,6 @@ export const addNew = async(req,res) => {
     catch(error){
         res.status(409).send({"err":error.message})
     }
- 
 };
 
 //add multiple products

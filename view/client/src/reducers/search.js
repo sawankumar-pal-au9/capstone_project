@@ -12,6 +12,9 @@ const search = (state={}, action) => {
         case 'ALL_PRODUCTS':
             return { ...state, AllProducts: action.payload }
 
+        case 'CREATE_PRODUCTS':
+            return { ...state, CreateProduct: action.payload }
+
         case 'DELETE_PRODUCT':
             return { ...state, DeleteProduct: action.payload }
         

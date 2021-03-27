@@ -67,6 +67,24 @@ export function search(query){
     }
 }
 
+//create product 
+export function createProduct(productData){
+    const output = fetch(product_url,{
+        method:'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(productData)
+    })
+    .then(res => res.json())
+
+    return {
+        type: 'CREATE_PRODUCT',
+        payload: output
+    }
+}
+
 //delete product 
 export function deleteProduct(id){
     const output = fetch(`${product_url}/${id}`, 

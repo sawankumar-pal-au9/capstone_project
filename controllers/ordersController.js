@@ -17,7 +17,10 @@ export const newOrder = async(req,res) => {
                 country : req.body.country,
                 postCode : req.body.postCode,
                 phone : req.body.phone,
-                email : req.body.email
+                email : req.body.email,
+                paymentMode : req.body.payment,
+                transactionId:req.body.transactionid,
+                transactionAmount:req.body.transactionamount
             },
             productDetails : {
                 asin : req.body.asin,
@@ -28,8 +31,8 @@ export const newOrder = async(req,res) => {
                 quantity : req.body.quantity,
                 totalPrice : req.body.totalPrice,
                 couponDiscount: req.body.couponDiscount,
-                grandTotal: req.body.grandTotal,
-                paymentMode : req.body.payment
+                grandTotal: req.body.grandTotal
+                
             },
             orderStatus : req.body.status,
             delivered : req.body.delivered,
