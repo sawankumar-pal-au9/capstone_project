@@ -91,7 +91,7 @@ class Header extends React.Component {
                 <>
                     <li>
                         <button className="headerBtn">
-                            <Link style={{textDecoration:'none', color:'white'}} to="/orders">
+                            <Link style={{textDecoration:'none', color:'white'}} to="/customer_orders">
                                 <i className="fa fa-list" aria-hidden="true"></i> Orders
                             </Link>
                         </button>
@@ -99,7 +99,7 @@ class Header extends React.Component {
 
                     <li>
                         <button className="cart">
-                            <Link style={{textDecoration:"none", color:'white'}} to="/cart">
+                            <Link style={{textDecoration:"none", color:'white'}} to="/customer_cart">
                                 <i className="fa fa-cart-plus"></i> Cart
                             </Link>
                         </button>

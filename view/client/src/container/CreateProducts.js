@@ -29,13 +29,9 @@ class CreateProducts extends React.Component {
             title: '',
             thumbnailFile: '', 
             thumbnail: '', 
-            description: '', 
-            images: {
-                image1:'',
-                image2:'',
-                image3:'',
-                image4:''                
-            }, 
+            description: '',
+            imageFiles: [],
+            images: [], 
             dimensions: '', 
             weight: '', 
             manufacturer: '', 
@@ -49,15 +45,13 @@ class CreateProducts extends React.Component {
         this.props.dispatch(categories());
     }
 
-    changeImageHandler = (name, value) => {
-        console.log(name, value)
+    changeImageHandler = (value) => {
         this.setState({
-            images:{
-                ...this.state.images,
-                [name]: value
-            }
-            
-        })
+            imageFiles:[
+                ...this.state.imageFiles,
+                ...value
+            ]              
+         })
     }
 
     renderPriceChange = (name, value) => {
@@ -72,43 +66,81 @@ class CreateProducts extends React.Component {
     }
     
     renderChange = (name, value) => {
-        console.log(name, value)
         this.setState({
             [name]: value
         })
     }
 
-    submit = async() => {
-        console.log(this.state)
-        const { asin, category, product, type, price, reviews, title, thumbnail, description, images, dimensions, weight, manufacturer, model_number, sold_by, brand } = this.state;
-        if(asin && category && product && type && price && title) {
-
+    submitImages = () => {  
+        let urls = []      
+        return this.state.imageFiles.map(image =>{
             const data = new FormData()	
+            data.append("file",image)	
+            data.append("upload_preset","image-uploader")	
+            data.append("clone_name","sunitta")	
+            console.log(data)            	
+            fetch('https://api.cloudinary.com/v1_1/sunitta/image/upload',{	
+            method:'POST',	
+            body:data
+            })
+            .then(res =>res.json())
+            .then(resp =>urls.push(resp.url))
+
+            if(this.state.imageFiles.length === urls.length) {
+                return urls
+            }
+        })
+    }
+
+    submitThumbnail = () => {
+        const data = new FormData()	
             data.append("file",this.state.thumbnailFile)	
             data.append("upload_preset","image-uploader")	
             data.append("clone_name","sunitta")	
-            console.log(data)	
-            try{	
-                const resp = await fetch('https://api.cloudinary.com/v1_1/sunitta/image/upload',{	
+            console.log(data)            	
+            return fetch('https://api.cloudinary.com/v1_1/sunitta/image/upload',{	
                 method:'POST',	
                 body:data	
-            })	
-            const respdata = await resp.json();	
-            this.setState({ 	
-                ...this.state,           	
-                thumbnail:respdata.url})
-            // console.log(this.state)
-            this.props.dispatch(createProduct(this.state));
+            })            
+    }
 
-            setTimeout(() => {
-                this.props.history.push('/products')
-            }, 1000)
+    submit = async() => {
+        if(this.state.price.current_price && parseInt(this.state.price.current_price) > 0) {
+            // console.log(this.state)
+            const { asin, category, product, type, price, reviews, title, thumbnail, description, images, dimensions, weight, manufacturer, model_number, sold_by, brand } = this.state;
+            // if(asin && category && product && type && price && title) {
+
+                const result1 = await this.submitThumbnail();
+                console.log(result1)
+                const respdata = await result1.json();	
+                this.setState({ 	
+                    ...this.state,           	
+                    thumbnail:respdata.url},()=>console.log(this.state))
+                const result2 = await this.submitImages();
+                console.log(result2)
+                this.setState({
+                    ...this.state, 
+                    images:result2[0]
+                })
+                // await this.props.dispatch(createProduct(this.state)); 
+
+                console.log(this.state);
+                
+                setTimeout(() => {
+                    console.log(this.state)
+                },1000)
+            
+                        
+                // setTimeout(() => {
+                //     this.props.history.push('/products')
+                // }, 1000)
+            // }
+        }else {
+            this.setState({
+                error: ""
+            })
         }
-    	
-        catch (err) {	
-            this.setState({error:"Invalid User details"})	
-        }
-    }}
+}
 
     render() {
         return (

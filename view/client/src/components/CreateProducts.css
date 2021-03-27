@@ -23,3 +23,7 @@
 .field-value {
     font-weight: bolder;
 }
+
+.conditionBased {
+    display: none;
+}

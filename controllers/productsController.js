@@ -1,11 +1,14 @@
-import express from 'express';
 import Products from '../model/productsModel.js';
+import Details from '../model/detailsModel.js';
+import Review from '../model/reviewModel.js';
 
 //add a product
 export const addNew = async(req,res) => {
 
-    const { asin, category, product, type, price, reviews, title, thumbnail, description, images, dimensions, weight, manufacturer, model_number, sold_by, brand } = req.body;
+    const asin = req.body.asin.toUpperCase();
+    const { category, product, type, price, reviews, title, thumbnail, description, images, dimensions, weight, manufacturer, model_number, sold_by, brand } = req.body;
     const newProduct = new Products({ asin, category, product, type, price, reviews, title, thumbnail });
+    const features = req.body.features.split(',');
 
     const date = new Date();
     const month = date.toLocaleString('default', { month: 'long' });
@@ -14,7 +17,7 @@ export const addNew = async(req,res) => {
         asin: asin,
         title: title,
         description: description,
-        feature_bullets: req.body.features.split(','),
+        feature_bullets: features,
         reviews: reviews,
         price: price,
         total_images: images.length,

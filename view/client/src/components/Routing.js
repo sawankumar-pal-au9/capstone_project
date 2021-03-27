@@ -31,12 +31,12 @@ const Routing = () => {
             <Route path='/search' component={Search}/>	
             <Route path='/detail/:id' component={Detail}/>	
             <Route path='/buynow' component={PlaceOrder}/>	
-            <Route path='/cart' component={Cart}/>	
+            <Route path='/customer_cart' component={Cart}/>	
             <Route path='/about' component={About}/>	
             <Route path='/contact' component={ContactUs}/>	
             <Route path='/signin' component={SignIn}/>	
             <Route path='/signup' component={SignUp}/>	
-            <Route path='/orders' component={Myorder}/>	
+            <Route path='/customer_orders' component={Myorder}/>	
             <Route path='/admin' component={Dashboard}/>	
             <Route path='/getUser' component={GetUser}/>	
             <Route path='/coupon' component={Coupon}/>	

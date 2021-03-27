@@ -77,7 +77,11 @@ const Category = (props) => {
                 </Slide>
             </div>
 
-            {/* <hr/> */}
+            <div className="categoryHead">
+                <h2>Categories</h2>
+            </div>
+
+            <hr/>
 
             <div className="container home-container">
                 {/* <h2 className="homeTitle">Categories</h2> */}

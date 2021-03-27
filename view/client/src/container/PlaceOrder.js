@@ -219,7 +219,7 @@ class PlaceOrder extends React.Component {
                 this.props.dispatch(updateCoupon(id, {email: this.state.userEmail}));	
             }	
             setTimeout(() => {	
-                this.props.history.push('/orders');	
+                this.props.history.push('/customer_orders');
             }, 2000);	
         }	
        	

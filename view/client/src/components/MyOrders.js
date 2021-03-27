@@ -62,7 +62,7 @@ const MyOrders = (props) => {
                                 <Link to={`/detail/${order.productDetails.asin}`} style={{textDecoration:"none" ,color:"#67AFCB"}}><h4>{order.productDetails.productTitle}</h4></Link>
                                 <p style={{display:"inline-block", margin:"20px"}}>Price: {order.productDetails.totalPrice}</p>
                                 <p style={{display:"inline-block", margin:"20px"}}>Quantity: {order.productDetails.quantity}</p>
-                                <p style={{display:"inline-block", margin:"20px"}}>Coupon Discount: {order.productDetails.couponDiscount}</p>
+                                <p style={{display:"inline-block", margin:"20px"}}>Coupon Discount: {order.productDetails.couponDiscount || 0}</p>
                                 <p style={{display:"inline-block", margin:"20px"}}>Total Price: {order.productDetails.grandTotal}</p>
                             </div>
                         </div>
