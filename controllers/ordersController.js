@@ -6,38 +6,39 @@ export const newOrder = async(req,res) => {
     
     try{
 
-        if(!req.session.user && req.session.user.role !=='User') {
-            return res.status(400).send('No Session Found! Please Login Again')
-        }
+        // if(!req.session.user && req.session.user.role !== 'User') {
+        //     return res.status(400).send('No Session Found! Please Login Again')
+        // }
 
-        if((req.session.user.name !== req.body.userName) || (req.session.user.email !== req.body.userEmail)) {
-            return res.status(400).send('No Session Found! Please Login Again')
-        }
+        // if((req.session.user.name !== req.body.userName) || (req.session.user.email !== req.body.userEmail)) {
+        //     return res.status(400).send('No Session Found! Please Login Again')
+        // }
 
-        const IsValidUserEmail = checkEmail(req.body.userEmail);
-        if(!IsValidUserEmail){
-            res.send("Invalid Email")
-        }
+        // const IsValidUserEmail = checkEmail(req.body.userEmail);
+        // if(!IsValidUserEmail){
+        //     res.send("Invalid Email")
+        // }
 
-        const IsValidEmail = checkEmail(req.body.email);
-        if(!IsValidEmail){
-            res.send("Invalid Email")
-        }
+        // const IsValidEmail = checkEmail(req.body.email);
+        // if(!IsValidEmail){
+        //     res.send("Invalid Email")
+        // }
 
-        const IsValidFName = checkString(req.body.fname);
-        if(!IsValidFName){
-            res.send("Invalid first name")
-        }
+        // const IsValidFName = checkString(req.body.fname);
+        // if(!IsValidFName){
+        //     res.send("Invalid first name")
+        // }
 
-        const IsValidLName = checkString(req.body.lname);
-        if(!IsValidLName){
-            res.send("Invalid last name")
-        }
+        // const IsValidLName = checkString(req.body.lname);
+        // if(!IsValidLName){
+        //     res.send("Invalid last name")
+        // }
 
-        const IsValidPhone = checkNumber(req.body.phone);
-        if(!IsValidPhone){
-            res.send("Invalid phone number")
-        }
+        // const IsValidPhone = checkNumber(req.body.phone);
+        // if(!IsValidPhone){
+        //     res.send("Invalid phone number")
+        // }
+        console.log("payment", req.body.payment)
         let data = {
             date : req.body.date,
             userName : req.body.userName,

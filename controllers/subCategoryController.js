@@ -5,9 +5,9 @@ import { checkNumber } from '../utils/validator.js';
 export const getSubCategories = async (req, res) => {
     try {
 
-        if(!req.session.user) {
-            return res.status(400).send('No Session Found! Please Login Again')
-        }
+        // if(!req.session.user) {
+        //     return res.status(400).send('No Session Found! Please Login Again')
+        // }
 
         const IsValid = checkNumber(req.params.categoryNumber);
         if(!IsValid){
@@ -27,9 +27,9 @@ export const getSubCategories = async (req, res) => {
 export const allSubcategories = async (req, res) => {
     try {
 
-        if(!req.session.user) {
-            return res.status(400).send('No Session Found! Please Login Again')
-        }
+        // if(!req.session.user) {
+        //     return res.status(400).send('No Session Found! Please Login Again')
+        // }
 
         const data = await subCategory.find({});
 

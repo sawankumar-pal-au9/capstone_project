@@ -41,7 +41,6 @@ const MyOrders = (props) => {
                                             <th>PAYMENT MODE</th>
                                             <th>ORDER STATUS</th>
                                             <th>CANCEL / DELETE</th>
-                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -49,14 +48,13 @@ const MyOrders = (props) => {
                                             <td>{order.date}</td>
                                             <td>{order.orderDetails.firstName} {order.orderDetails.lastName}</td>
                                             <td>{order.orderDetails.phone}</td>
-                                            <td>{order.productDetails.paymentMode}</td>
+                                            <td>{order.orderDetails.paymentMode}</td>
                                             <td>{order.orderStatus}</td>	
                                             {renderOrderBtn(order.orderStatus, order._id)}   
                                         </tr>
                                     </tbody>
                                     
-                                </table>
-                                
+                                </table>  
                             </div>
                             <div className="panel-body">
                                 <Link to={`/detail/${order.productDetails.asin}`} style={{textDecoration:"none" ,color:"#67AFCB"}}><h4>{order.productDetails.productTitle}</h4></Link>
@@ -84,7 +82,7 @@ const MyOrders = (props) => {
 
     }
     return(
-        <div>
+        <div style={{overflowX: "scroll"}}>
             {displayRender(props)}
         </div>
     );

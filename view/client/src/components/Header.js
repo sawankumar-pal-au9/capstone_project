@@ -57,6 +57,16 @@ class Header extends React.Component {
         }
     }
 
+    renderTogBtn = (e) => {
+        e.preventDefault();
+        let navBtns = document.querySelector('#navBtns');
+        if(navBtns.style.display === "none") {
+            navBtns.style.display = "block";
+        }else {
+            navBtns.style.display = "none";
+        }
+    }
+
     checkForUserType = () => {
         if(sessionStorage.getItem('role') === 'Admin') {
             return (
@@ -117,7 +127,7 @@ class Header extends React.Component {
         }
     }
 
-    handleLogout = () => {    
+    handleLogout = () => {   
         this.setState({
             userName: '',
             loggedIn: false
@@ -130,38 +140,43 @@ class Header extends React.Component {
         sessionStorage.removeItem('clogin');
         sessionStorage.removeItem('login');
         sessionStorage.removeItem('role');
-        sessionStorage.removeItem('createAdmin');
-        this.props.history.push('/signin');   
+        sessionStorage.removeItem('categoryNumber');
+        sessionStorage.removeItem('userDetails');
+        sessionStorage.removeItem('productData');
+        sessionStorage.removeItem('transaction');
+        sessionStorage.removeItem('orderDetails');
+        this.props.history.push('/signin');
     }
 
     CondtionalRender = () => {
-        if(this.state.userName === '' || this.state.userName === undefined || this.state.userName === null){
+        if(sessionStorage.getItem('userName') === null){
             return(
-                <ul className="nav navbar-nav navbar-right">
+                <ul className="nav navbar-nav navbar-right" id="signinBtn">
                     <li>
                         <button className="auth">
                             <Link style={{textDecoration:'none', color: 'white'}} to="/signin">
-                            <i className="fa fa-sign-in"></i> SignUp / SignIn</Link>
+                            <i className="fa fa-sign-in"></i> Sign In/Up</Link>
                         </button>
                     </li>
-                
                 </ul>
             );
         }
         else {
             return(
-                <ul className="nav navbar-nav navbar-right">
+                <ul className="nav navbar-nav navbar-right" id="navBtns">
                     {this.checkForUserType()} 
 
                     <li>	
-                        <button className="cart">	
-                            <Link style={{textDecoration:"none", color:'white'}} to="/profile"><i className="fa fa-user-plus"></i> Profile</Link>	
+                        <button className="auth">	
+                            <Link style={{textDecoration:"none", color:'white'}} to="/profile">
+                                <i className="fa fa-user-plus"></i> Profile
+                            </Link>	
                         </button>	
                     </li>  
 
                     <li>
                         <button className="auth" onClick={this.handleLogout}>
-                            <i className="fa fa-sign-out"></i>Signout
+                            <i className="fa fa-sign-out"></i>SignOut
                         </button>
                     </li>
                 </ul>
@@ -219,8 +234,16 @@ class Header extends React.Component {
             <header>
                 <nav className="navbar navbar-inverse" style={{borderRadius:"0px"}}>
                     <div className="container-fluid">
-                        <div className="navbar-header">
-                            {this.renderLogo()}                       
+                        <div className="navbar-header navHeader">
+                            {this.renderLogo()}  
+                            {
+                                sessionStorage.getItem('userName') &&
+                                <div className="toggleBtn">
+                                    <button className="navTogBtn" onClick={this.renderTogBtn}>
+                                        <i className="fa fa-bars"></i>
+                                    </button>
+                                </div> 
+                            }                    
                         </div>
 
                         {this.CondtionalRender()}    

@@ -31,7 +31,7 @@ class PlaceOrder extends React.Component {
             discountAmount:1,	
             payment: '',	
             status: 'Order Placed',	
-            delivered: '',	
+            delivered: false,	
             success: '',	
             couponDiscount: '',	
             grandTotal: '',	
@@ -204,18 +204,30 @@ class PlaceOrder extends React.Component {
             grandTotal: this.state.grandTotal?this.state.grandTotal:this.state.totalPrice,	
             payment: this.state.payment?this.state.payment:'COD',	
             status: this.state.status,	
-            delivered: (this.state.payment !== 'COD')?true:false
+            delivered: this.state.delivered
         }	
         if (orderData.fname === '' || orderData.lname === '' || orderData.phone === ''	
             || orderData.houseadd === '' || orderData.postCode === '') {	
                 // alert("All fields are required.")	
             this.setState({	
                 errors: { ...this.state.errors, emptyFields: "All fields are required" }	
-            })	
-            	
+            })		         	
         }	
-        else if(orderData.payment === 'NetBanking' || orderData.payment === 'Through Card') {	
-            this.paymentProcess(orderData);	
+        else if(orderData.payment === 'NetBanking' || orderData.payment === 'Through Card') {
+            console.log("orderData+++", orderData)	
+            this.props.dispatch(placeOrder(orderData));
+            this.setState({	
+                errors: { ...this.state.errors, emptyFields: "" },	
+                success: "Redirecting to payment...!"	
+            })	
+            if(this.state.couponDiscount) {	
+                let ele = document.getElementById('coupon');	
+                let id = ele[ele.selectedIndex].id;	
+                this.props.dispatch(updateCoupon(id, {email: this.state.userEmail}));	
+            }
+            setTimeout(() => {	
+                this.paymentProcess(orderData);	
+            }, 2000);	
         }	
         else {	
             this.props.dispatch(placeOrder(orderData));	
@@ -263,8 +275,7 @@ class PlaceOrder extends React.Component {
         }	
         	
     }	
-    render() {	
-        // let productData = JSON.parse(sessionStorage.getItem('productData'))	
+    render() {		
         	
         return(	
             <div>	

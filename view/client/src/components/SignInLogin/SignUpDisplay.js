@@ -30,7 +30,7 @@ const SignUpDisplay = (props) => {
                         />
                     </div>
 
-                    <button type="submit" className="btn btn-primary btn-block"
+                    <button type="submit" className="btn btn-warning btn-block"
                     onClick= {props.submitHandler}>Create</button>
                 </>
             );
@@ -38,7 +38,7 @@ const SignUpDisplay = (props) => {
         else {
             return (
                 <>
-                    <button type="submit" className="btn btn-primary btn-block"
+                    <button type="submit" className="btn btn-warning btn-block"
                     onClick= {props.submitHandler}>Sign Up</button>
                     <p className="forgot-password text-right">
                         Already registered? <Link to='/signin'  style={{color:"dodgerblue"}}>sign in</Link>

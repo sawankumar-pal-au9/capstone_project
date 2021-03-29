@@ -1,11 +1,10 @@
 import './Form.css';
 import { Link } from 'react-router-dom';
 const SignInDisplay = (props) => {
-    // console.log(props)     
     
-        return (
-            <div className="main-continer">
-            <div className="form-class">
+    return (
+        <div className="main-continer">
+        <div className="form-class">
             <form className="form-data">
                 <h3 className="font-size">Sign In Form</h3>
 
@@ -45,7 +44,7 @@ const SignInDisplay = (props) => {
                     <span>{props.success}</span>
                 </div>
 
-                <button type="submit" className="btn btn-primary btn-block"onClick={props.onSubmit}>Sign In</button>
+                <button type="submit" className="btn btn-warning btn-block"onClick={props.onSubmit}>Sign In</button>
 
                 <p className="forgot-password text-right">Not a member? <Link to='/signup' style={{color:"dodgerblue"}}>sign up</Link>
                 </p>    
@@ -53,7 +52,7 @@ const SignInDisplay = (props) => {
 
             <center>
                 <p><b>-- or --</b></p>
-                <button className="btn btn-info">
+                <button className="btn btn-light authBtn1">
                     <a 
                         href="/auth/google"
                         style={{textDecoration:"none", color:"black"}}
@@ -62,10 +61,10 @@ const SignInDisplay = (props) => {
                     </a>
                 </button><br/><br/>
 
-                <button className="btn btn-info" style={{marginBottom:"10px"}}>
+                <button className="btn btn-primary authBtn2" style={{marginBottom:"10px"}}>
                     <a 
                         href="/auth/facebook"
-                        style={{textDecoration:"none", color:"black"}}
+                        style={{textDecoration:"none", color:"white"}}
                     >
                         SIGN IN WITH FACEBOOK
                     </a>
