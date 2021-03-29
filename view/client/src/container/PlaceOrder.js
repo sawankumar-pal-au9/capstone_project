@@ -29,9 +29,9 @@ class PlaceOrder extends React.Component {
             quantity: 1,	
             totalPrice: 1,	
             discountAmount:1,	
-            payment: 'COD',	
+            payment: '',	
             status: 'Order Placed',	
-            delivered: false,	
+            delivered: '',	
             success: '',	
             couponDiscount: '',	
             grandTotal: '',	
@@ -45,12 +45,13 @@ class PlaceOrder extends React.Component {
                 postCode: '',	
                 phone: '',	
                 email: '',	
-                payment: 'COD',	
+                payment: '',	
                 status: 'Order Placed',	
                 emptyFields: ''	
             }	
         }	
     }	
+
     componentDidMount() {	
         let productData = JSON.parse(sessionStorage.getItem('productData'))	
         let userName = sessionStorage.getItem('userName')	
@@ -70,9 +71,14 @@ class PlaceOrder extends React.Component {
         	
         this.props.dispatch(getAllCoupons());	
     }	
+
     blurHandler = (name, value) => {	
         let errors = this.state.errors	
-        let isnum = /^\d+$/.test(value);	
+        var regexAlpha = /^[A-Za-z]+$/;
+        var regexNum = /^[0-9]+$/;
+        let isValid1 = regexAlpha.test(value);
+        let isValid2 = regexNum.test(value);
+        ;	
         switch (name) {	
             case 'fname':	
             case 'lname':	
@@ -82,8 +88,8 @@ class PlaceOrder extends React.Component {
                 else if (value.length < 3) {	
                     errors[name] = 'Name should be more than three letters'	
                 }	
-                else if (isnum) {	
-                    errors[name] = 'Name should not be a number'	
+                else if (!isValid1) {	
+                    errors[name] = 'Name should contain alphabets only'	
                 }	
                 else {	
                     errors[name] = ''	
@@ -107,7 +113,7 @@ class PlaceOrder extends React.Component {
                 else if (value.length < 5) {	
                     errors[name] = 'Field should contain more than 5 digits'	
                 }	
-                else if (!isnum) {	
+                else if (!isValid2) {	
                     errors[name] = 'Should contain only number'	
                 }	
                 else {	
@@ -133,7 +139,8 @@ class PlaceOrder extends React.Component {
         this.setState({	
             errors, [name]: value	
         })	
-    }	
+    }
+
     paymentProcess = (orderDetails) => {	
         console.log(orderDetails)	
             this.props.history.push({	
@@ -141,12 +148,14 @@ class PlaceOrder extends React.Component {
                 state: {orderDetails:orderDetails}	
             })	
     }	
+
     changeHandler = (name, value) => {	
         this.blurHandler(name, value) 	
         this.setState({	
             [name]: value,	
         })	
     }	
+
     quantitychangeHandler = (value) => {	
         let grandTotal = (this.state.currentPrice * value) - this.state.couponDiscount;	
         this.setState({	
@@ -154,6 +163,7 @@ class PlaceOrder extends React.Component {
             grandTotal: grandTotal	
         })	
     }	
+
     couponChangeHandler = (value) => {	
         console.log(value)	
         let discountPercent = (value === "Not Available" || value === "default") ? 0 : value;	
@@ -165,6 +175,7 @@ class PlaceOrder extends React.Component {
             grandTotal: grandTotal?grandTotal:''	
         })	
     }	
+
     submitHandler = () => {	
         // console.log(this.state)	
         sessionStorage.removeItem('login');	
@@ -191,9 +202,9 @@ class PlaceOrder extends React.Component {
             totalPrice: this.state.totalPrice,	
             couponDiscount: this.state.couponDiscount,	
             grandTotal: this.state.grandTotal?this.state.grandTotal:this.state.totalPrice,	
-            payment: this.state.payment,	
+            payment: this.state.payment?this.state.payment:'COD',	
             status: this.state.status,	
-            delivered: this.state.delivered	
+            delivered: (this.state.payment !== 'COD')?true:false
         }	
         if (orderData.fname === '' || orderData.lname === '' || orderData.phone === ''	
             || orderData.houseadd === '' || orderData.postCode === '') {	
@@ -203,7 +214,7 @@ class PlaceOrder extends React.Component {
             })	
             	
         }	
-        else if(orderData.payment === 'NetBanking' || orderData.payment === 'CDcard') {	
+        else if(orderData.payment === 'NetBanking' || orderData.payment === 'Through Card') {	
             this.paymentProcess(orderData);	
         }	
         else {	
@@ -243,7 +254,7 @@ class PlaceOrder extends React.Component {
                 blurHandler = {this.blurHandler}	
                 submitHandler = {this.submitHandler}	
                 quantitychangeHandler = {this.quantitychangeHandler}	
-                error = {this.state.errors.emptyFields}	
+                error = {this.state.errors.emptyField}	
                 success = {this.state.success}	
                 couponChangeHandler = {this.couponChangeHandler}	
             />	

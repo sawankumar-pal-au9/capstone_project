@@ -79,7 +79,7 @@ class Header extends React.Component {
 
                     <li>
                         <button className="headerBtn">
-                            <Link style={{textDecoration:'none', color:'white'}} to="/product">
+                            <Link style={{textDecoration:'none', color:'white'}} to="/app_products">
                                 <i className="fa fa-product-hunt"></i> Products
                             </Link>
                         </button>

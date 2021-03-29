@@ -20,7 +20,7 @@ const SignInDisplay = (props) => {
                         onChange={(event) => props.changeHandler(event.target.name, event.target.value)}
                         onBlur={(event) => props.blurHandler(event.target.name, event.target.value)}
                     />
-                    <p className="error-display">{props.userDetails.errors.userName}</p>
+                    <p className="error-display">{props.userDetails.errors.email}</p>
                 </div>
 
                 <div className="form-group">
@@ -34,7 +34,7 @@ const SignInDisplay = (props) => {
                         onChange={(event) => props.changeHandler(event.target.name, event.target.value)}
                         onBlur={(event) => props.blurHandler(event.target.name, event.target.value)}
                     />
-                    <p className="error-display">{props.userDetails.errors.userName}</p>
+                    <p className="error-display">{props.userDetails.errors.password}</p>
                 </div>
 
                 <div style={{fontSize:"16px",color:"red"}}>

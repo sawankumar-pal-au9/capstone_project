@@ -43,7 +43,7 @@ const Routing = () => {
             <Route path='/create_coupon' component={CreateCoupon}/>	
             <Route path='/usercoupon' component={UserCoupon}/>	
             <Route path='/profile' component={Profile}/>
-            <Route path='/product' component={Product}/>	
+            <Route path='/app_products' component={Product}/>	
             <Route path='/create_product' component={CreateProducts}/>
             <Route path='/notSignedIn' component={NotSignedIn}/>	
             <Route path='/payment' component={PaymentProcess}/>	

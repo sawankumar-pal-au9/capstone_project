@@ -27,3 +27,9 @@
 .conditionBased {
     display: none;
 }
+
+#cprod_err {
+    font-size: 18px;
+    color: red;
+    background-color: lavender;
+}

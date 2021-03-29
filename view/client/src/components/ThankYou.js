@@ -62,11 +62,11 @@ class ThankYou extends React.Component {
                         </div>
                         <div className="payment-buttons">
                             <button className="btn btn-warning payment-buttons1"
-                            onClick={()=>{this.props.history.push('/orders')}}
+                            onClick={()=>{this.props.history.push('/customer_orders')}}
                             >My orders</button>
 
                             <button className="btn btn-warning payment-buttons2"
-                            onClick={()=>{this.props.history.push('/cart')}}
+                            onClick={()=>{this.props.history.push('/customer_cart')}}
                             >Products on cart</button>
                         </div>
                         

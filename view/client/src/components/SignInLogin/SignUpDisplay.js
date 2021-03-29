@@ -59,7 +59,7 @@ const SignUpDisplay = (props) => {
                     <input 
                         type="text" 
                         className="form-control" 
-                        placeholder="User name"
+                        placeholder="Enter User name"
                         autoComplete="new-off" 
                         name="userName"
                         value={props.signUpDetails.userName}
@@ -89,7 +89,7 @@ const SignUpDisplay = (props) => {
                         className="form-control" 
                         placeholder="Enter password"
                         autoComplete="new-off" 
-                        name="passWord"
+                        name="password"
                         value={props.signUpDetails.passWord}
                         onChange = {(event)=>props.changeHandler(event.target.name,event.target.value)}
                         onBlur = {(event)=>props.blurHandler(event.target.name,event.target.value)}/>

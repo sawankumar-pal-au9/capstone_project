@@ -12,12 +12,21 @@ const CreateProductsDisplay = (props) => {
 
     const renderDiscounted = (e) => {
         let flag = e.target.value;
+        let price = document.querySelector('#current_price');
+        let savingAmount = document.querySelector('#savings_amount');
+        let savingPercent = document.querySelector('#savings_percent');
+        let beforePrice = document.querySelector('#before_price');
         let conditionBased = document.getElementsByClassName('conditionBased')[0];
 
         if(flag === "true") {
             conditionBased.style.display = "block";
+            price.value = 0;
         }else {
             conditionBased.style.display = "none";
+            savingAmount.value = 0;
+            savingPercent.value = 0;
+            price.value = beforePrice.value;
+            props.renderPriceChange(price.name, price.value);
         }
 
         props.renderPriceChange(e.target.name, e.target.value);
@@ -64,11 +73,8 @@ const CreateProductsDisplay = (props) => {
 
         props.renderPriceChange(e.target.name, e.target.value);
 
-        if(!price.value || price.value === "0") {
-            price.value = e.target.value;
-
-            props.renderPriceChange(price.name, price.value);
-        }
+        price.value = e.target.value;
+        props.renderPriceChange(price.name, price.value);
     }
     
 
@@ -174,10 +180,11 @@ const CreateProductsDisplay = (props) => {
                     </label>
 
                     <select 
+                        defaultValue="default"
                         className="form-control field-value"
                         name="category" onChange={handleChange} 
                         required>
-                            <option selected disabled>Select Category</option>
+                            <option value="default" disabled>Select Category</option>
                             {
                                 props.categories && props.categories.length > 0 &&
                                 props.categories.map(item => {
@@ -421,6 +428,8 @@ const CreateProductsDisplay = (props) => {
                 </div>
                                 
                 <br/>
+                
+                <span id="cprod_err">{ props.error }</span>
 
                 <div>
                     <input
