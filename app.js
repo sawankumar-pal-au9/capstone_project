@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import path from 'path';
+// import path from 'path';
 import session from 'express-session';
 import category from './routes/categoryRoutes.js';
 import products from './routes/productsRoutes.js';
@@ -72,8 +72,10 @@ app.use('/transaction',transactions)
 
 if(process.env.NODE_ENV === 'production') {
   app.use(express.static('./view/client/build'));
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '/view/client/build/index.html'), (err) => {
+
+  const path = require('path');
+  app.get('/*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'view', 'client', 'build', 'index.html'), (err) => {
       if(err) {
         return res.status(500).send(err);
       }
