@@ -77,7 +77,7 @@ if(process.env.NODE_ENV === 'production') {
   app.get('/*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'view', 'client', 'build', 'index.html'), (err) => {
       if(err) {
-        return res.status(500).send(err);
+        return res.status(404).send(err);
       }
     })
   });
