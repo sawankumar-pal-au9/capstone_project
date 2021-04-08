@@ -33,6 +33,7 @@ export const AddQuery = async(req,res) => {
             phone : req.body.phone,
             comment : req.body.comment             
         }
+        console.log(data)
         let mailDetails = { 
             from: config.auth.user, 
             to: data.userEmail, 
